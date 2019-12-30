@@ -45,16 +45,13 @@ public class ReservationBean {
 			sc.nextLine();
 			checkout = sdf.parse(sc.next());
 			
-			Date now = new Date();
+			String erro = reservation.updateDates(checkin, checkout);
 			
-			if (checkin.before(now) || checkout.before(now)) {
-				System.out.println("Error in reservation! Reservation dates must be future dates!");
-			} else if(!checkout.after(checkin)){
-				System.out.println("Error in reservation! Check-out must be after Check-in date.");
-			} else {
-				reservation.updateDates(checkin, checkout);
+			if(erro == null) {
 				System.out.println("Reservation: " + reservation);
-			}// end else
+			} else {
+				System.out.println("Erro in reservation: " + erro);
+			}
 			
 		}// end else
 
